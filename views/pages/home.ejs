@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styleapp.css">
+        <title>Home Page</title>
+        
+    </head>
+<body>
+<div class = "maincontainer">
+<%- include('../partials/header') %>
+
+<div class ="content">
+<div id="createacc">
+<h4>Thanks for visiting us. Only members can access the link below!</h4>
+<a href="/supercoolmembersonlypage">Members Access CLICK HERE</a>
+<h2>Be a Member Create Account Here!</h2>
+
+<div id="signupform">
+
+<form method="POST" action="/create">
+    <input id="username" type="text" name="username" placeholder="Enter a User Name"><br><br>
+    <input id="password" type ="text" name="password" placeholder="Enter a Password"><br><br>
+    <button type="submit" id="btn">Submit</button>
+</form>
+ 
+</div>
+<h4>Already a member?</h4>
+<a href="/login">Log in</a>
+</div>
+</div>
+<%- include('../partials/footer') %>
+</div>
+<script>
+
+    let username = document.getElementById("username").value
+    let password = document.getElementById("password").value
+    let btn = document.getElementById("btn")
+</script>
+</body>
+</html>
