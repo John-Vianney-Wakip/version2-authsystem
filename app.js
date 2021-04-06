@@ -1,13 +1,15 @@
 const express = require('express')
 const cookieParser = require("cookie-parser")
 const { v4: uuidv4 } = require('uuid')
-// const fake_db = require('./models.js')
+const { Users } = require('./user.js')
 const matchCredentials = require('./utils.js')
+let users = require('./user.js')
 const app = express()
 
 // const { User } = require('./models.js')
 
 const models = require('./db.js')
+// const { users } = require('./db.js')
 
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser())
@@ -30,20 +32,19 @@ app.get('/login', function(req, res){
 app.post('/create', async function(req, res){
     let body = req.body
 
-    const user = await User.create({
+    const user = await Users.create({
         username: body.username,
         password: body.password  
     });
-    
-    // models.User[user.username]= user
-    console.log( user.toJSON() )
+   
+    // console.log( user.toJSON() )
     res.redirect('/login')
 })
 
 // login
-app.post('/login', function(req, res){
+app.post('/login', async function(req, res){
 if (matchCredentials(req.body)) {
-let user = modles.users[req.body.username]
+let user = models.users[req.body.username]
 
 let id = uuidv4()
 // create session record
